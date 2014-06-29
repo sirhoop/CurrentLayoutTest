@@ -29,12 +29,13 @@ public class MainActivity extends Activity {
 		this.listOfTileModels.add(new InfoTileModel("InformationTile 1"));
 		this.listOfTileModels.add(new InfoTileModel("Aktuelle Kalenderinfos"));
 		this.listOfTileModels.add(new InfoTileModel("Speisepläne"));
+		
+		this.listOfTileModels.get(0).setActive(false);
 
 		this.infoTileAdapter = new InfoTileAdapter(getApplicationContext(),
 				this.listOfTileModels);
 
 		this.listOfInfoTiles.setAdapter(infoTileAdapter);
-
 	}
 
 }
