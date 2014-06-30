@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,35 +59,42 @@ public class InfoTileAdapter extends BaseAdapter {
 		// if (!this.listOfInfoTiles.get(index).isActive())
 		// return null;
 
-		LinearLayout tile = new LinearLayout(context);
+		final ViewHolder holder;	
 
 		if (convertView == null) {
+
 			LayoutInflater mInflater = (LayoutInflater) context
 					.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			tile = (LinearLayout) mInflater.inflate(R.layout.info_tile, null);
-			convertView = tile;
+			convertView = (LinearLayout) mInflater.inflate(R.layout.info_tile, null);
+			
+			holder = new ViewHolder();
+			holder.imageView = new ImageView(convertView.getContext());
+			holder.contentText = new TextView(convertView.getContext());
+			
+			holder.imageView.setImageResource(R.drawable.chuck);
+			holder.imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+					LayoutParams.MATCH_PARENT));
+			holder.imageView.setVisibility(View.VISIBLE);
+
+			holder.contentText.setText("Test, Test, Test");
+			holder.contentText.setTextColor(Color.BLACK);
+			holder.contentText.setGravity(Gravity.CENTER);
+			holder.contentText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+					LayoutParams.WRAP_CONTENT));
+
+			((LinearLayout)convertView).addView(holder.imageView);
+			//((LinearLayout)convertView).addView(holder.contentText);
+			
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
 		}
 
-		TextView titleTextView = (TextView) convertView
-				.findViewById(R.id.infoTileTitleText);
-		titleTextView.setText(this.listOfInfoTiles.get(index).getTitle());
-
-		ImageView imageView = new ImageView(context);
-		imageView.setImageResource(R.drawable.chuck);
-		imageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT));
-		imageView.setVisibility(View.VISIBLE);
-
-		contentText = new TextView(context);
-		contentText.setText("Test, Test, Test");
-		contentText.setTextColor(Color.BLACK);
-		contentText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT));
-
-		tile.addView(imageView);
-		
-		// tile.addView(contentText);
-
 		return convertView;
+	}
+	
+	static class ViewHolder {
+		ImageView imageView;
+		TextView contentText;
 	}
 }
