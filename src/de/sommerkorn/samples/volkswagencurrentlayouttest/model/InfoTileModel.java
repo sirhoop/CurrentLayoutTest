@@ -1,8 +1,16 @@
 package de.sommerkorn.samples.volkswagencurrentlayouttest.model;
 
 public class InfoTileModel {
+	
+	public static enum InfoTileType {CLOCK_TILE, IMAGE_TILE, CUSTOM};
+	
 	private String title;
 	private boolean active = true;
+	protected InfoTileType type = InfoTileType.CUSTOM;
+
+	public InfoTileType getType() {
+		return type;
+	}
 
 	public boolean isActive() {
 		return active;
