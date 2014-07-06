@@ -15,6 +15,11 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TableLayout;
 
+/**
+ * MainActivity
+ * @author alex
+ *
+ */
 public class MainActivity extends Activity {
 
 	// private TableLayout tableOfInfoTiles;
